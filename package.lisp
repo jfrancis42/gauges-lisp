@@ -5,6 +5,7 @@
 	   :seven-seg
 	   :draw-sats
 	   :initialize
+	   :fancy-pointer
 	   :gauge
 	   :led-color
 	   :draw-gauge

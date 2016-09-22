@@ -239,6 +239,9 @@
    (rad :accessor rad
 	:initarg :rad
 	:initform 0)
+   (fancy-pointer :accessor fancy-pointer
+		  :initarg :fancy-pointer
+		  :initform t)
    (pointer-color :accessor pointer-color
 		  :initarg :pointer-color
 		  :initform sdl:*red*)
@@ -291,15 +294,21 @@
 	  (tick-holder g)))
   
   ;; Draw the indicator.
-  (sdl-gfx:draw-filled-trigon (sdl:point :x (sdl:cast-to-int (+ (center-x g) (* (hub-radius g) (cos (+ (rad g) 1.5707963267948966d0)))))
-					 :y (sdl:cast-to-int (+ (center-y g) (* (hub-radius g) (sin (+ (rad g) 1.5707963267948966d0))))))
-			      (sdl:point :x (sdl:cast-to-int (+ (center-x g) (* (hub-radius g) (cos (- (rad g) 1.5707963267948966d0)))))
-					 :y (sdl:cast-to-int (+ (center-y g) (* (hub-radius g) (sin (- (rad g) 1.5707963267948966d0))))))
-			      (sdl:point :x (sdl:cast-to-int (+ (center-x g) (* 0.8 (radius g) (cos (rad g)))))
-					 :y (sdl:cast-to-int (+ (center-y g) (* 0.8 (radius g) (sin (rad g))))))
-			      :color (pointer-color g))
+  (if (fancy-pointer g)
+      (sdl-gfx:draw-filled-trigon (sdl:point :x (sdl:cast-to-int (+ (center-x g) (* (hub-radius g) (cos (+ (rad g) 1.5707963267948966d0)))))
+					     :y (sdl:cast-to-int (+ (center-y g) (* (hub-radius g) (sin (+ (rad g) 1.5707963267948966d0))))))
+				  (sdl:point :x (sdl:cast-to-int (+ (center-x g) (* (hub-radius g) (cos (- (rad g) 1.5707963267948966d0)))))
+					     :y (sdl:cast-to-int (+ (center-y g) (* (hub-radius g) (sin (- (rad g) 1.5707963267948966d0))))))
+				  (sdl:point :x (sdl:cast-to-int (+ (center-x g) (* 0.8 (radius g) (cos (rad g)))))
+					     :y (sdl:cast-to-int (+ (center-y g) (* 0.8 (radius g) (sin (rad g))))))
+				  :color (pointer-color g))
+      (sdl-gfx:draw-line (sdl:point :x (sdl:cast-to-int (+ (center-x g) (* (hub-radius g) (cos (rad g)))))
+				    :y (sdl:cast-to-int (+ (center-y g) (* (hub-radius g) (sin (rad g))))))
+			 (sdl:point :x (sdl:cast-to-int (+ (center-x g) (* 0.8 (radius g) (cos (rad g)))))
+				    :y (sdl:cast-to-int (+ (center-y g) (* 0.8 (radius g) (sin (rad g))))))
+			 :color (pointer-color g)))
 
-  ;; Draw the "hub" in the middle of the gauge.
+;; Draw the "hub" in the middle of the gauge.
   (sdl-gfx:draw-filled-Circle-* (sdl:cast-to-int (center-x g))
 				(sdl:cast-to-int (center-y g))
 				(hub-radius g)
