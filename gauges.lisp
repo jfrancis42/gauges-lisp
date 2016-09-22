@@ -241,7 +241,7 @@
 	:initform 0)
    (fancy-pointer :accessor fancy-pointer
 		  :initarg :fancy-pointer
-		  :initform t)
+		  :initform nil)
    (pointer-color :accessor pointer-color
 		  :initarg :pointer-color
 		  :initform sdl:*red*)

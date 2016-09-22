@@ -327,8 +327,8 @@
 			       (gauges:set-gauge-value sats-digit-1 0)
 			       (gauges:set-gauge-value sats-digit-2 (first n)))
 			     (progn
-			       (gauges:set-gauge-value ss-digit-1 (first n))
-			       (gauges:set-gauge-value ss-digit-2 (second n)))))
+			       (gauges:set-gauge-value sats-digit-1 (first n))
+			       (gauges:set-gauge-value sats-digit-2 (second n)))))
 		       (gauges:set-gauge-value sat-count 0))
 
 		   ;; If we've got a valid speed, convert it to MPH
