@@ -399,7 +399,7 @@
 		   (setf ctime (format nil "~A" (local-time:unix-to-timestamp (gpsd:point-creation-time cp))))
 		   (setf clat (format nil "~A" (gpsd:point-lat cp)))
 		   (setf clon (format nil "~A" (gpsd:point-lon cp)))
-		   (if show-maidenhead (setf maidenhead (gpsd:maidenhead cp)))
+		   (if show-maidenhead (setf maidenhead (gpsd:to-maidenhead cp)))
 
 		   ;; Update the mode LED.
 		   (cond
